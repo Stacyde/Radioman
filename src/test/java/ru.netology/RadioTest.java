@@ -23,22 +23,22 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
-@ParameterizedTest
-@CsvSource({
-        "0,-1",
-        "0,0",
-        "5,5",
-        "9,9",
-        "0,10"
-})
-public void station(int expected, int newCurrentRadioStation) {
-    Radio cond = new Radio();
-    cond.setCurrentRadioStation(newCurrentRadioStation);
+    @ParameterizedTest
+    @CsvSource({
+            "0,-1",
+            "0,0",
+            "5,5",
+            "9,9",
+            "0,10"
+    })
+    public void station(int expected, int newCurrentRadioStation) {
+        Radio cond = new Radio();
+        cond.setCurrentRadioStation(newCurrentRadioStation);
 
-    int actual = cond.getCurrentRadioStation();
+        int actual = cond.getCurrentRadioStation();
 
-    Assertions.assertEquals(expected, actual);
-}
+        Assertions.assertEquals(expected, actual);
+    }
     @ParameterizedTest
     @CsvSource({
             "1,0",
@@ -49,7 +49,7 @@ public void station(int expected, int newCurrentRadioStation) {
     public void increaseVolume(int expected, int newCurrentVolume) {
         Radio cond = new Radio();
         cond.setCurrentVolume(newCurrentVolume);
-        cond.increaseVolume(newCurrentVolume);
+        cond.increaseVolume();
 
         int actual = cond.getCurrentVolume();
 
@@ -66,7 +66,7 @@ public void station(int expected, int newCurrentRadioStation) {
     public void radioStationIncrease(int expected, int newCurrentStation) {
         Radio cond = new Radio();
         cond.setCurrentRadioStation(newCurrentStation);
-        cond.increaseRadioStation(newCurrentStation);
+        cond.increaseRadioStation();
 
         int actual = cond.getCurrentRadioStation();
 
@@ -82,7 +82,7 @@ public void station(int expected, int newCurrentRadioStation) {
     public void reduceVolume(int expected, int newCurrentVolume) {
         Radio cond = new Radio();
         cond.setCurrentVolume(newCurrentVolume);
-        cond.reduceVolume(newCurrentVolume);
+        cond.reduceVolume();
 
         int actual = cond.getCurrentVolume();
 
@@ -97,7 +97,7 @@ public void station(int expected, int newCurrentRadioStation) {
     public void radioStationReduce(int expected, int newCurrentStation) {
         Radio cond = new Radio();
         cond.setCurrentRadioStation(newCurrentStation);
-        cond.reduceRadioStation(newCurrentStation);
+        cond.reduceRadioStation();
 
         int actual = cond.getCurrentRadioStation();
 
