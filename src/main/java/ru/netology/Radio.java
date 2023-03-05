@@ -150,10 +150,9 @@ public class Radio {
         if (numberRadioStation > maxRadioStation) {
             numberRadioStation = maxRadioStation;
         }
-
     }
 
-    protected void reduceVolume() {
+    public void reduceVolume() {
         if (currentVolume <= 0) {
             currentVolume = 0;
         } else {
@@ -161,7 +160,7 @@ public class Radio {
         }
     }
 
-    protected void reduceRadioStation() {
+    public void reduceRadioStation() {
         if (currentRadioStation <= 0) {
             currentRadioStation = maxRadioStation;
         } else {
