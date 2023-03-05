@@ -76,7 +76,7 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    @ParameterizedTest  //+
+    @ParameterizedTest
     @CsvSource({
             "0,0",
             "24,25",
@@ -93,9 +93,9 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
-    @ParameterizedTest //+
+    @ParameterizedTest
     @CsvSource({
-            "10,0",
+            "9,0",
             "4,5",
             "8,9"
     })
@@ -256,7 +256,7 @@ public class RadioTest {
             "75,75",
             "100,100"
     })
-    public void RadioStationNumber(int expected,int numberRadioStation){
+    public void radioStationNumber(int expected,int numberRadioStation){
         Radio cond = new Radio(numberRadioStation);
         cond.setNumberRadioStation(numberRadioStation);
 
@@ -273,7 +273,7 @@ public class RadioTest {
             "74,75",
             "99,100"
     })
-    public void RadioStationNumberMax(int expected,int numberRadioStation){
+    public void radioStationNumberMax(int expected,int numberRadioStation){
         Radio cond = new Radio(numberRadioStation);
         cond.setNumberRadioStation(numberRadioStation);
         cond.getMaxRadioStation();
@@ -292,7 +292,7 @@ public class RadioTest {
             "0,75",
             "0,100"
     })
-    public void RadioStationNumberMin(int expected,int numberRadioStation){
+    public void radioStationNumberMin(int expected,int numberRadioStation){
         Radio cond = new Radio(numberRadioStation);
         cond.setNumberRadioStation(numberRadioStation);
         cond.getMinRadioStation();
@@ -311,7 +311,7 @@ public class RadioTest {
             "74,75",
             "99,100"
     })
-    public void RadioStationNumberReduce(int expected,int numberRadioStation){
+    public void radioStationNumberReduce(int expected,int numberRadioStation){
         Radio cond = new Radio(numberRadioStation);
         cond.setNumberRadioStation(numberRadioStation);
         cond.reduceNumberRadioStation();
@@ -322,20 +322,134 @@ public class RadioTest {
     }
     @ParameterizedTest
     @CsvSource({
-            "9,10",
-            "24,25",
-            "49,50",
-            "74,75",
-            "99,100"
+            "13,13,15",
+            "13,13,13",
+            "0,13,0"
     })
-    public void RadioStationNumberIncrease(int expected,int numberRadioStation){
+    public void stationNumber(int expected,int numberRadioStation, int newNumberRadioStation){
         Radio cond = new Radio(numberRadioStation);
-        cond.setNumberRadioStation(numberRadioStation);
-        cond.increaseNumberRadioStation();
+        cond.setNumberRadioStation(newNumberRadioStation);
 
         int actual = cond.getNumberRadioStation();
 
         Assertions.assertEquals(expected, actual);
     }
+    @ParameterizedTest
+    @CsvSource({
+            "0,17,0",
+            "0,17,10",
+            "0,17,17",
+            "0,17,18"
+    })
+    public void stationMin(int expected,int numberRadioStation, int newNumberRadioStation){
+        Radio cond = new Radio(numberRadioStation);
+        cond.setMinRadioStation(newNumberRadioStation);
+
+        int actual = cond.getMinRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @ParameterizedTest
+    @CsvSource({
+            "16,17,0",
+            "16,17,17",
+            "16,17,10"
+    })
+    public void stationMax(int expected,int numberRadioStation, int newNumberRadioStation){
+        Radio cond = new Radio(numberRadioStation);
+        cond.setMaxRadioStation(newNumberRadioStation);
+
+        int actual = cond.getMaxRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "100,9,101",
+            "100,89,123"
+    })
+    public void stationMaxVolume(int expected,int numberRadioStation, int newMaxVolume){
+        Radio cond = new Radio(numberRadioStation);
+        cond.setMaxVolume(newMaxVolume);
+
+        int actual = cond.getMaxVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @ParameterizedTest
+    @CsvSource({
+            "0,9,101",
+            "0,89,50",
+            "0,89,0"
+    })
+    public void stationMinVolume(int expected,int numberRadioStation, int newMinVolume){
+        Radio cond = new Radio(numberRadioStation);
+        cond.setMinVolume(newMinVolume);
+
+        int actual = cond.getMinVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @ParameterizedTest
+    @CsvSource({
+            "100,9,100",
+            "51,89,50",
+            "1,89,0"
+    })
+    public void stationVolumeIncrease(int expected,int numberRadioStation, int newVolume){
+        Radio cond = new Radio(numberRadioStation);
+        cond.setCurrentVolume(newVolume);
+        cond.increaseVolume();
+
+        int actual = cond.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @ParameterizedTest
+    @CsvSource({
+            "99,29,100",
+            "0,89,0"
+    })
+    public void stationVolumeReduce(int expected,int numberRadioStation, int newVolume){
+        Radio cond = new Radio(numberRadioStation);
+        cond.setCurrentVolume(newVolume);
+        cond.reduceVolume();
+
+        int actual = cond.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @ParameterizedTest
+    @CsvSource({
+            "26,29,25",
+            "0,29,28",
+            "1,29,0"
+    })
+    public void stationIncrease(int expected,int numberRadioStation, int newRadioStation){
+        Radio cond = new Radio(numberRadioStation);
+        cond.setCurrentRadioStation(newRadioStation);
+        cond.increaseRadioStation();
+
+        int actual = cond.getCurrentRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @ParameterizedTest
+    @CsvSource({
+            "28,29,0",
+            "24,29,25",
+            "14,29,15"
+    })
+    public void stationReduce(int expected,int numberRadioStation, int newRadioStation){
+        Radio cond = new Radio(numberRadioStation);
+        cond.setCurrentRadioStation(newRadioStation);
+        cond.reduceRadioStation();
+
+        int actual = cond.getCurrentRadioStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
 
 }
